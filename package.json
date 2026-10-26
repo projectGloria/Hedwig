@@ -1,0 +1,72 @@
+{
+  "name": "hedwig",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Keep the code. Keep the release. A repository archive and transfer desktop app.",
+  "author": "Hedwig",
+  "license": "MIT",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && node scripts/icon.mjs && vite build && node scripts/build.mjs",
+    "start": "electron .",
+    "test": "vitest run",
+    "test:ui": "node scripts/ui-smoke.mjs",
+    "test:public": "node scripts/public-smoke.mjs",
+    "format": "prettier --write src electron tests scripts *.json *.ts *.md index.html",
+    "bundle:git": "node scripts/bundle-git.mjs",
+    "dist": "npm run build && npm run bundle:git && electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.0",
+    "playwright": "^1.58.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.7.0",
+    "vite": "^6.1.0",
+    "vitest": "^5.0.5"
+  },
+  "build": {
+    "appId": "app.hedwig.desktop",
+    "productName": "Hedwig",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "assets/icon.png",
+      "LICENSE",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/git",
+        "to": "git"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "artifactName": "Hedwig-Setup-${version}-${arch}.${ext}"
+  }
+}
