@@ -1,6 +1,6 @@
 id = "Hedwig"
 name = "Hedwig"
-version = "1.0.0"
+version = "1.0.1"
 main_exe = "Hedwig.exe"
 icon = "assets/icon.ico"
 accent = "#6366f1"
