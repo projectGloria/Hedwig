@@ -1,0 +1,10 @@
+id = "Hedwig"
+name = "Hedwig"
+version = "1.0.0"
+main_exe = "Hedwig.exe"
+icon = "assets/icon.ico"
+accent = "#6366f1"
+description = "Git repository & release archiver"
+needs_webview2 = false
+data_folders = ["%APPDATA%\\Hedwig"]
+legacy_names = ["Hedwig"]
