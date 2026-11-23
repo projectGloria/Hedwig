@@ -5,3 +5,4 @@ release/
 vendor/
 test-results/
 *.log
+[Dd]esktop.ini
